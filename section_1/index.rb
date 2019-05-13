@@ -4,17 +4,6 @@
 # 数独ソルバー（しらみつぶし法）
 #
 
-# gridの内部表現を作り出すメソッド
-# def make_grid(string)
-#   grid = 9.times.collect{ Array.new(9, nil) }
-#
-#   0.upto(8) do |i|
-#     0.upto(8) do |j|
-#       grid[i][j] = (string[i*9+j] == '.' ? nil : string[i*9+f].to_i)
-#     end
-#   end
-# end
-
 # gridの内部表現を作り出す
 def make_grid(string)
   (0..8).collect do |i|
@@ -73,23 +62,6 @@ end
 def unique?(list)
   (list.length == list.uniq.length)
 end
-
-# def solve(grid, i, j)
-#   if grid[i][j] # すでに数字が入ってるセルならば
-#     solve(grid, i, j+1) # 次のセルに進む(1)
-#   else
-#     1.upto(9) do |v|
-#       grid[i][j] = v
-#       if # 制約条件に違反していなければ
-#         if solve(grid, i, j+1) # 次のセルに進み、全てのセルが埋まったら
-#           return true
-#         end
-#       end
-#     end
-#     grid[i][j] = nil # 全て失敗したので、未確定に戻す
-#     false
-#   end
-# end
 
 # あらかじめ書いてあるファイルから標準入力する（p4）
 # line には ファイル（problem.txt）が入る
