@@ -63,7 +63,7 @@ end
 
 # 制約条件のチェック(2)
 # select 条件にマッチした要素を返した配列を作る 戻り値は配列
-# 例 引数 block
+# 例 引数 block == [8, 1, 9, 2, 3, 5, 7, 6, nil] OR [5, 2, 1, 8, 3, 9, 7, 6, 1]
 def block_is_ok?(block)
   unique?(block.select{|v| v})
 end
