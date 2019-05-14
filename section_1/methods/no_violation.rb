@@ -16,8 +16,8 @@ grid = [
   [9, 8, 4, 7, 6, 1, 2, 3, 5],
   [5, 2, 1, 8, 3, 9, 7, 6, 4]
 ]
-i = 8
-j = 8
+i = 8 # i 行
+j = 8 # j 列
 
 no_violation?(grid, i, j)
 # -> [8, 1, 9, 2, 3, 5, 7, 6, 4]
@@ -33,3 +33,5 @@ no_violation?(grid, i, j)
 # -> [8, 1, 9,
 #     2, 3, 5,
 #     7, 6, 4]
+# https://docs.google.com/spreadsheets/d/1BpjhG62_rK07rOyg79jjIgudDfsDdUWj9RhSy_UGWeM/edit#gid=0
+
