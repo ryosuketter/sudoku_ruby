@@ -26,7 +26,7 @@ def column(grid, p) # 列
   (0..8).collect{ |k| grid[9 * k + p % 9] }
 end
 
-def square(grid, p)
+def square(grid, p) # 3 * 3の正方形
   (0..8).collect{ |k| grid[9*(3*(p/9/3)+(k/3))+3*(p%9/3)+(k%3)]}
 end
 
