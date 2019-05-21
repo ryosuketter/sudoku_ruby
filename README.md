@@ -3,5 +3,5 @@
 実行
 
 ```bash
-$ ruby index.rb problem.txt
+$ ruby index,rb problem,txt
 ```
