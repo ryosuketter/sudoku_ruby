@@ -78,7 +78,7 @@ def solve(grid)
     candidate_values.each do |value|
       grid[cell_number] = value # value : 任意のセルに入る候補の数字
 
-      sleep(0.01)
+      sleep(0.02)
       print_grid(grid)
       puts "残り#{grid.count(nil)}個"
       puts '---------'
