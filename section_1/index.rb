@@ -28,7 +28,7 @@ def square(grid, cn) # 3 * 3の正方形
 end
 
 # 空のセルのindex番号を配列として返す
-def empty_cells(grid)
+def empty_cell_numbers(grid)
   (0..80).reject{ |p| grid[p] }
 end
 
@@ -47,10 +47,10 @@ def fixed_numbers(grid, cell_number)
 end
 
 def solve(grid)
-  empty_cells = empty_cells(grid)
+  empty_cell_numbers = empty_cell_numbers(grid)
 
   # candidates : セルに置くことができる数字の候補を配列 [index, [候補となる数字（複数も可）]]で返す
-  candidates = empty_cells.map{ |cell_number|
+  candidates = empty_cell_numbers.map{ |cell_number|
     [cell_number, possible_numbers(grid, cell_number)]
   }
 
@@ -78,12 +78,17 @@ def solve(grid)
     candidate_values.each do |value|
       grid[cell_number] = value # value : 任意のセルに入る候補の数字
 
-      sleep(0.1)
+      sleep(0.01)
       print_grid(grid)
       puts "残り#{grid.count(nil)}個"
       puts '---------'
 
       return grid if solve(grid)
+      # if solve(grid)
+      #   puts "入れる数字がある"
+      # else
+      #   puts "入れる数字がない" # => つまり解き方は間違っている
+      # end
     end
 
     p "grid[#{cell_number}] => #{grid[cell_number]} 取り消し"
@@ -99,8 +104,7 @@ ARGF.each do |line|
   # chomp:文字列の末尾の改行文字を取り除いた新しい文字列を返す
   # 例 line == "..53..... 8......2. .7..1.5.. 4....53.. .1..7...6 ..32...8. .6.5....9 ..4....3. .....97.."
   line.chomp!
-
-  print_grid(
+    print_grid(
     # 全てのセル（81セル）に数字（1-9）が入った配列が返る
     # solve(make_grid(line.gsub(/\s/, ''))) -> [1, 4, ... 6, 4]
     solve(
@@ -112,4 +116,6 @@ ARGF.each do |line|
       )
     )
   )
+  puts '---------'
+  puts '---------'
 end
