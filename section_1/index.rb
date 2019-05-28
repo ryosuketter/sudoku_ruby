@@ -9,7 +9,7 @@ end
 # 例 引数 string == "..53.....8......2..7..1.5..4....53...1..7...6..32...8..6.5....9..4....3......97.."
 # 改行とスペース消した値が引数に来る
 # .をnilに変換する
-def make_grid(string)
+def convert_dot_to_nil_lists(string)
   # セル番号は、0から80
   # 各セルの値は、確定している場合は整数（1-9）、未確定の場合はnil
   string.split(//).map{ |c| c == "." ? nil : c.to_i }
@@ -78,7 +78,6 @@ def solve(grid)
     candidate_values.each do |value|
       grid[cell_number] = value # value : 任意のセルに入る候補の数字
 
-      sleep(0.02)
       print_grid(grid)
       puts "残り#{grid.count(nil)}個"
       puts '---------'
@@ -100,22 +99,8 @@ end
 # あらかじめ書いてあるファイルから標準入力する（p4）
 # line には ファイル（problem.txt）が入る
 ARGF.each do |line|
-
-  # chomp:文字列の末尾の改行文字を取り除いた新しい文字列を返す
-  # 例 line == "..53..... 8......2. .7..1.5.. 4....53.. .1..7...6 ..32...8. .6.5....9 ..4....3. .....97.."
-  line.chomp!
-    print_grid(
-    # 全てのセル（81セル）に数字（1-9）が入った配列が返る
-    # solve(make_grid(line.gsub(/\s/, ''))) -> [1, 4, ... 6, 4]
-    solve(
-      # .をnilに変換して配列が返る
-      # make_grid(line.gsub(/\s/, '')) -> [nil, nil, 5, 3, nil, ... 9, 7, nil, nil]
-      make_grid(
-        # スペースの削除
-        line.gsub(/\s/, '')
-      )
-    )
-  )
-  puts '---------'
-  puts '---------'
+  remove_space_line = line.gsub(/\s/, '')
+  value_or_nil_lists = convert_dot_to_nil_lists(remove_space_line)
+  solved_lists = solve(value_or_nil_lists)
+  print_grid(solved_lists)
 end
